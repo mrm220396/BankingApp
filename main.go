@@ -5,6 +5,15 @@ import (
 	"time"
 )
 
+type Investments struct {
+	CBD float32
+	LCI float32
+}
+
+func (in *Investments) TimeInterest() {
+
+}
+
 func DayHour() string {
 	now := time.Now().Hour()
 
@@ -17,7 +26,7 @@ func DayHour() string {
 	return "Morning"
 }
 
-func menu() {
+func menu(welcomeText string) {
 	var option int
 	var quit bool = false
 	var account AccountBank
@@ -26,12 +35,7 @@ func menu() {
 
 	for !quit {
 
-		fmt.Printf(`Good %s %s %s
-1] Deposit
-2] Withdraw
-3] Check Balance
-4] Exit
-Choose an option: `, DayHour(), account.FirstName, account.LastName)
+		fmt.Printf(welcomeText, DayHour(), account.FirstName, account.LastName)
 
 		fmt.Scan(&option)
 
@@ -60,5 +64,11 @@ Choose an option: `, DayHour(), account.FirstName, account.LastName)
 }
 
 func main() {
-	menu()
+	welcomeText := `Good %s %s %s
+1] Deposit
+2] Withdraw
+3] Check Balance
+4] Exit
+Choose an option: `
+	menu(welcomeText)
 }
